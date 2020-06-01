@@ -18,14 +18,33 @@ for iter = 1:num_iters
     %
 
 
-
-
-
+    % set theta0
+    loss = 0;
+    for i = 1:m
+        loss = loss + (theta' * X(i, :)' - y(i)) * X(i, 1);
+    end
+    loss = loss * (alpha / m);
+    new_t1 = theta(1) - loss;
+    
+    % set theta1
+    
+    loss = 0;
+    for i = 1:m
+        loss = loss + (theta' * X(i, :)' - y(i)) * X(i, 2);
+    end
+    loss = loss * (alpha / m);
+    new_t2 = theta(2) - loss;
+    
+    theta = [new_t1; new_t2];
+    
+    
+    
 
 
     % ============================================================
 
-    % Save the cost J in every iteration    
+    % Save the cost J in every iteration  
+%     computeCost(X, y, theta)
     J_history(iter) = computeCost(X, y, theta);
 
 end
